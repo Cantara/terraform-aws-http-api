@@ -1,0 +1,26 @@
+openapi: "3.0.1"
+info:
+  title: "example-http-api"
+  version: "2022-02-20 07:58:12UTC"
+servers:
+  - url: "${service_uri}/{basePath}"
+    variables:
+      basePath:
+        default: ""
+tags:
+  - name: "Project"
+    x-amazon-apigateway-tag-value: "Example HTTP API"
+  - name: "Environment"
+    x-amazon-apigateway-tag-value: "DEV"
+paths:
+  /$default:
+    x-amazon-apigateway-any-method:
+      isDefaultRoute: true
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        connectionId: ${connection_id}
+        type: "http_proxy"
+        httpMethod: "ANY"
+        uri: ${service_uri}
+        connectionType: "VPC_LINK"
+x-amazon-apigateway-importexport-version: "1.0"
