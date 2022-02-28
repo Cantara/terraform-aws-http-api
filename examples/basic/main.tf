@@ -18,7 +18,8 @@ locals {
 }
 
 module "vpc" {
-  source  = "git::https://github.com/Cantara/terraform-aws-vpc.git?ref=100e73c"
+  source  = "telia-oss/vpc/aws"
+  version = "4.4.0"
   cidr_block = local.cidr_block
   public_subnet_cidrs = [
     "10.1.48.0/20"
