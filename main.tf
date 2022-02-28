@@ -2,6 +2,13 @@
 # Resources
 # ------------------------------------------------------------------------------
 
+resource "aws_service_discovery_private_dns_namespace" "main" {
+  name        = "${var.name_prefix}.ecs.local"
+  description = "Private DNS namespace for ECS services."
+  vpc         = var.vpc_id
+  tags        = var.tags
+}
+
 resource "aws_service_discovery_service" "main" {
   name = "${var.name_prefix}-service"
   tags = var.tags
@@ -9,7 +16,6 @@ resource "aws_service_discovery_service" "main" {
   dns_config {
     namespace_id   = aws_service_discovery_private_dns_namespace.main.id
     routing_policy = "MULTIVALUE"
-
     dns_records {
       type = "SRV"
       ttl  = 10
@@ -40,7 +46,6 @@ resource "aws_apigatewayv2_stage" "main" {
     logging_level            = "INFO"
     throttling_burst_limit   = 100
     throttling_rate_limit    = 1000
-    # TODO: Figure out a good rate/burst limit.
   }
 
   access_log_settings {
@@ -57,16 +62,6 @@ resource "aws_cloudwatch_log_group" "agw" {
   tags              = var.tags
 }
 
-
-resource "aws_apigatewayv2_vpc_link" "main" {
-  name = "${var.name_prefix}-vpc-link"
-  security_group_ids = [
-  aws_security_group.vpc_link.id]
-  subnet_ids = var.private_subnet_ids
-  tags       = var.tags
-}
-
-
 resource "aws_security_group" "vpc_link" {
   vpc_id      = var.vpc_id
   name        = "${var.name_prefix}-vpc-link-sg"
@@ -74,6 +69,14 @@ resource "aws_security_group" "vpc_link" {
   tags = merge(var.tags, {
     Name = "${var.name_prefix}-vpc-link-sg"
   })
+}
+
+resource "aws_apigatewayv2_vpc_link" "main" {
+  name = "${var.name_prefix}-vpc-link"
+  security_group_ids = [
+  aws_security_group.vpc_link.id]
+  subnet_ids = var.private_subnet_ids
+  tags       = var.tags
 }
 
 resource "aws_security_group_rule" "link_egress_all" {
@@ -129,23 +132,4 @@ module "fargate" {
   }
 
   tags = var.tags
-}
-
-//resource "aws_iam_role" "api-gw-lambda_invoke" {
-//  name                 = "${var.name_prefix}-api-gw-lambda-invoke"
-//  description          = "Role for the API Gateway that can invoke lambdas"
-//  assume_role_policy   = data.aws_iam_policy_document.lambda_invoke_assume.json
-//  permissions_boundary = var.role_permissions_boundary_arn
-//}
-
-//resource "aws_iam_role_policy" "lambda_to_api-gw-lambda_invoke" {
-//  role   = aws_iam_role.api-gw-lambda_invoke.id
-//  policy = data.aws_iam_policy_document.lambda_for_api-gw-lambda_invoke.json
-//}
-
-resource "aws_service_discovery_private_dns_namespace" "main" {
-  name        = "${var.name_prefix}.ecs.local"
-  description = "Private DNS namespace for ECS services."
-  vpc         = var.vpc_id
-  tags        = var.tags
 }
