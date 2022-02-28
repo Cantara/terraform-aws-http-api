@@ -25,8 +25,8 @@ resource "aws_apigatewayv2_api" "main" {
   name                         = var.name_prefix
   protocol_type                = "HTTP"
   disable_execute_api_endpoint = false
-  body = var.api_contract
-  tags = var.tags
+  body                         = var.api_contract
+  tags                         = var.tags
 }
 
 resource "aws_apigatewayv2_stage" "main" {
@@ -61,7 +61,7 @@ resource "aws_cloudwatch_log_group" "agw" {
 resource "aws_apigatewayv2_vpc_link" "main" {
   name = "${var.name_prefix}-vpc-link"
   security_group_ids = [
-    aws_security_group.vpc_link.id]
+  aws_security_group.vpc_link.id]
   subnet_ids = var.private_subnet_ids
   tags       = var.tags
 }
@@ -83,9 +83,9 @@ resource "aws_security_group_rule" "link_egress_all" {
   from_port         = 0
   to_port           = 0
   cidr_blocks = [
-    "0.0.0.0/0"]
+  "0.0.0.0/0"]
   ipv6_cidr_blocks = [
-    "::/0"]
+  "::/0"]
 }
 
 resource "aws_security_group_rule" "link_ingress_task" {
@@ -105,12 +105,12 @@ module "fargate" {
   source  = "telia-oss/ecs-fargate/aws"
   version = "5.2.0"
 
-  name_prefix          = var.name_prefix
-  vpc_id               = var.vpc_id
-  private_subnet_ids   = var.private_subnet_ids
-  cluster_id           = aws_ecs_cluster.cluster.id
-  task_container_image = var.container_image
-  task_container_environment = var.container_environment
+  name_prefix                        = var.name_prefix
+  vpc_id                             = var.vpc_id
+  private_subnet_ids                 = var.private_subnet_ids
+  cluster_id                         = aws_ecs_cluster.cluster.id
+  task_container_image               = var.container_image
+  task_container_environment         = var.container_environment
   task_container_port                = 8000
   task_container_assign_public_ip    = false
   task_role_permissions_boundary_arn = var.role_permissions_boundary_arn

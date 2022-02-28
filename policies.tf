@@ -1,11 +1,11 @@
 data "aws_iam_policy_document" "lambda_invoke_assume" {
   statement {
     actions = [
-      "sts:AssumeRole"]
+    "sts:AssumeRole"]
     effect = "Allow"
     principals {
       identifiers = [
-        "apigateway.amazonaws.com"]
+      "apigateway.amazonaws.com"]
       type = "Service"
     }
   }

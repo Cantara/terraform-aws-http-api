@@ -18,8 +18,8 @@ locals {
 }
 
 module "vpc" {
-  source  = "telia-oss/vpc/aws"
-  version = "4.4.0"
+  source     = "telia-oss/vpc/aws"
+  version    = "4.4.0"
   cidr_block = local.cidr_block
   public_subnet_cidrs = [
     "10.1.48.0/20"
@@ -31,13 +31,11 @@ module "vpc" {
   ]
   name_prefix         = local.name_prefix
   create_nat_gateways = true
-
 }
 
 module "template" {
   source      = "../../"
   name_prefix = local.name_prefix
-
   tags = {
     environment = "dev"
     terraform   = "True"
