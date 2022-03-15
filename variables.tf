@@ -45,3 +45,21 @@ variable "container_environment" {
     TEST = "TEST"
   }
 }
+
+variable "desired_count" {
+  description = "The initial number of instances of certificate catering tasks to place and keep running - autoscaling may adjust)"
+  type        = number
+  default     = 1
+}
+
+variable "task_definition_cpu" {
+  description = "Amount of CPU to reserve for the certificate catering tasks."
+  type        = number
+  default     = 256
+}
+
+variable "task_definition_memory" {
+  description = "The soft limit (in MiB) of memory to reserve for the certificate catering containers."
+  type        = number
+  default     = 512
+}

@@ -114,6 +114,9 @@ module "fargate" {
   cluster_id                         = aws_ecs_cluster.cluster.id
   task_container_image               = var.container_image
   task_container_environment         = var.container_environment
+  task_definition_cpu                = var.task_definition_cpu
+  task_definition_memory             = var.task_definition_memory
+  desired_count                      = var.desired_count
   task_container_port                = 8000
   task_container_assign_public_ip    = false
   task_role_permissions_boundary_arn = var.role_permissions_boundary_arn
