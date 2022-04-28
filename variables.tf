@@ -46,6 +46,12 @@ variable "container_environment" {
   }
 }
 
+variable "container_port" {
+  description = "Port that the container exposes."
+  type        = number
+  default     = 0
+}
+
 variable "desired_count" {
   description = "The initial number of instances of certificate catering tasks to place and keep running - autoscaling may adjust)"
   type        = number

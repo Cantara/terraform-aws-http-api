@@ -95,8 +95,8 @@ resource "aws_security_group_rule" "link_ingress_task" {
   security_group_id        = module.fargate.service_sg_id
   type                     = "ingress"
   protocol                 = "tcp"
-  from_port                = 8000
-  to_port                  = 8000
+  from_port                = var.container_port
+  to_port                  = var.container_port
   source_security_group_id = aws_security_group.vpc_link.id
 }
 
@@ -117,7 +117,7 @@ module "fargate" {
   task_definition_cpu                = var.task_definition_cpu
   task_definition_memory             = var.task_definition_memory
   desired_count                      = var.desired_count
-  task_container_port                = 8000
+  task_container_port                = var.container_port
   task_container_assign_public_ip    = false
   task_role_permissions_boundary_arn = var.role_permissions_boundary_arn
   service_registry_arn               = aws_service_discovery_service.main.arn
