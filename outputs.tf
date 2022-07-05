@@ -41,3 +41,8 @@ output "service_arn" {
   description = "The Amazon Resource Name (ARN) that identifies the service."
   value       = module.fargate.service_arn
 }
+
+output "api_id" {
+  description = "The id of the API"
+  value = aws_apigatewayv2_api.main.id
+}
