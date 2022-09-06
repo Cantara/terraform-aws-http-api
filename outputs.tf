@@ -44,5 +44,10 @@ output "service_arn" {
 
 output "api_id" {
   description = "The id of the API"
-  value = aws_apigatewayv2_api.main.id
+  value       = aws_apigatewayv2_api.main.id
+}
+
+output "stage_id" {
+  description = "The id of the deployed stage"
+  value       = aws_apigatewayv2_stage.main.id
 }
