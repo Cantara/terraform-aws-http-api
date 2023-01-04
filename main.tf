@@ -27,10 +27,11 @@ resource "aws_service_discovery_service" "main" {
   }
 }
 
+
 resource "aws_apigatewayv2_api" "main" {
   name                         = var.name_prefix
   protocol_type                = "HTTP"
-  disable_execute_api_endpoint = false
+  disable_execute_api_endpoint = var.disable_execute_api_endpoint
   body                         = var.api_contract
   tags                         = var.tags
 }
