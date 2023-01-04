@@ -69,3 +69,9 @@ variable "task_definition_memory" {
   type        = number
   default     = 512
 }
+
+variable "disable_execute_api_endpoint" {
+  description = "Setting this to true disables the execute api endpoint - important for MTLS"
+  type        = bool
+  default     = false
+}
