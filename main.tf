@@ -115,7 +115,7 @@ resource "aws_ecs_cluster" "cluster" {
 
 module "fargate" {
   source  = "telia-oss/ecs-fargate/aws"
-  version = "5.2.0"
+  version = "5.4.0"
 
   name_prefix                        = var.name_prefix
   vpc_id                             = var.vpc_id
