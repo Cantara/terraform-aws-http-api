@@ -48,6 +48,14 @@ resource "aws_apigatewayv2_stage" "main" {
     throttling_burst_limit   = 100
     throttling_rate_limit    = 1000
   }
+  dynamic "route_settings" {
+    for_each = var.route_settings
+    content {
+      route_key              = route_settings.value["route_key"]
+      throttling_burst_limit = route_settings.value["throttling_burst_limit"]
+      throttling_rate_limit  = route_settings.value["throttling_rate_limit"]
+    }
+  }
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.agw.arn

@@ -75,3 +75,13 @@ variable "disable_execute_api_endpoint" {
   type        = bool
   default     = false
 }
+
+variable "route_settings" {
+  description = "A list of route settings objects to apply to the default stage"
+  type = list(object({
+    route_key              = string
+    throttling_burst_limit = number
+    throttling_rate_limit  = number
+  }))
+  default = []
+}

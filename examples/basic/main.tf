@@ -45,7 +45,8 @@ module "template" {
     connection_id = module.template.aws_apigatewayv2_vpc_link_id
     }
   )
-  container_image    = "public.ecr.aws/c6g2n7e9/hello-world:latest"
+  container_image    = "crccheck/hello-world"
+  container_port     = 8000
   private_subnet_ids = module.vpc.private_subnet_ids
   vpc_id             = module.vpc.vpc_id
 }
