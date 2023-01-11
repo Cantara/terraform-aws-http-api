@@ -445,6 +445,8 @@ github.com/gruntwork-io/terratest v0.19.0 h1:LZjT4bDUzJW1M0KUw3mQIviWmg4INkNDpuK
 github.com/gruntwork-io/terratest v0.19.0/go.mod h1:NjUn6YXA5Skxt8Rs20t3isYx5Rl+EgvGB8/+RRXddqk=
 github.com/gruntwork-io/terratest v0.40.17 h1:veSr7MUtk5GRDg5/pZ9qLUvrylr7yuRw0fY9UaSHbuI=
 github.com/gruntwork-io/terratest v0.40.17/go.mod h1:enUpxNMsQfiJTTJMGqiznxohqJ4cYPU+nzI3bQNw1WM=
+github.com/gruntwork-io/terratest v0.41.3 h1:LYhFuTlcBCKAOz3dLIN+mcQN1Kbjn8pXpktnxG0eg5c=
+github.com/gruntwork-io/terratest v0.41.3/go.mod h1:qH1xkPTTGx30XkMHw8jAVIbzqheSjIa5IyiTwSV2vKI=
 github.com/hashicorp/consul/api v1.1.0/go.mod h1:VmuI/Lkw1nC05EYQWNKwWGbkg+FbDBtguAZLlVdkD9Q=
 github.com/hashicorp/consul/sdk v0.1.1/go.mod h1:VKf9jXwCTEY1QZP2MOLRhb5i/I/ssyNV1vwHyQBF0x8=
 github.com/hashicorp/errwrap v0.0.0-20141028054710-7554cd9344ce/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
