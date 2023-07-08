@@ -59,9 +59,7 @@ resource "aws_apigatewayv2_stage" "main" {
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.agw.arn
-    format          = <<EOT
-{"requestId":"$context.requestId", "ip":"$context.identity.sourceIp", "requestTime":"$context.requestTime", "httpMethod":"$context.httpMethod", "resourcePath":"$context.resourcePath", "status":"$context.status", "protocol":"$context.protocol", "responseLength":"$context.responseLength" }
-EOT
+    format          = var.access_log_format
   }
 }
 

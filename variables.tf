@@ -99,3 +99,11 @@ variable "container_health_check" {
     }
   )
 }
+
+variable "access_log_format" {
+  description = "A string on a single line that represents the elements and format of the access log entries"
+  type        = string
+  default     = <<EOT
+{"requestId":"$context.requestId", "ip":"$context.identity.sourceIp", "requestTime":"$context.requestTime", "httpMethod":"$context.httpMethod", "resourcePath":"$context.resourcePath", "status":"$context.status", "protocol":"$context.protocol", "responseLength":"$context.responseLength" }
+EOT
+}
