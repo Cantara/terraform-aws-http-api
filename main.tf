@@ -114,13 +114,12 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 module "fargate" {
-  source  = "telia-oss/ecs-fargate/aws"
-  version = "5.4.0"
-
+  source                             = "github.com/Cantara/terraform-aws-ecs-fargate?ref=22c2ab5"
   name_prefix                        = var.name_prefix
   vpc_id                             = var.vpc_id
   private_subnet_ids                 = var.private_subnet_ids
   cluster_id                         = aws_ecs_cluster.cluster.id
+  container_health_check             = var.container_health_check
   task_container_image               = var.container_image
   task_container_environment         = var.container_environment
   task_definition_cpu                = var.task_definition_cpu
@@ -132,11 +131,6 @@ module "fargate" {
   service_registry_arn               = aws_service_discovery_service.main.arn
   with_service_discovery_srv_record  = true
   wait_for_steady_state              = true
-
-  health_check = {
-    port = "traffic-port"
-    path = "/actuator/health"
-  }
 
   deployment_circuit_breaker = {
     enable   = true

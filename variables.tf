@@ -85,3 +85,17 @@ variable "route_settings" {
   }))
   default = []
 }
+
+variable "container_health_check" {
+  description = "An ECS TaskDefinition HealthCheck object to set in each container"
+  default     = null
+  type = object(
+    {
+      command     = list(string)
+      interval    = number
+      retries     = number
+      startPeriod = number
+      timeout     = number
+    }
+  )
+}
