@@ -3,7 +3,7 @@ module github.com/telia-oss/terraform-module-template
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.323
+	github.com/aws/aws-sdk-go v1.44.334
 	github.com/gruntwork-io/terratest v0.41.11
 )
 
