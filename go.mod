@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.3
 
 require (
-	github.com/aws/aws-sdk-go v1.49.6
+	github.com/aws/aws-sdk-go v1.49.7
 	github.com/gruntwork-io/terratest v0.46.7
 )
 
