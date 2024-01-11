@@ -107,3 +107,8 @@ variable "access_log_format" {
 {"requestId":"$context.requestId", "ip":"$context.identity.sourceIp", "requestTime":"$context.requestTime", "httpMethod":"$context.httpMethod", "resourcePath":"$context.resourcePath", "status":"$context.status", "protocol":"$context.protocol", "responseLength":"$context.responseLength" }
 EOT
 }
+
+variable "description" {
+  default = ""
+  type = string
+}
