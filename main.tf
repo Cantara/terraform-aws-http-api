@@ -39,8 +39,8 @@ resource "aws_apigatewayv2_api" "main" {
 resource "aws_apigatewayv2_stage" "main" {
   api_id      = aws_apigatewayv2_api.main.id
   name        = "$default"
-  auto_deploy = true
   tags        = var.tags
+  stage_variables = {"vpc_link_id": aws_apigatewayv2_vpc_link.main.id}
 
   default_route_settings {
     detailed_metrics_enabled = true
@@ -60,6 +60,22 @@ resource "aws_apigatewayv2_stage" "main" {
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.agw.arn
     format          = var.access_log_format
+  }
+}
+
+resource "aws_apigatewayv2_deployment" "example" {
+  api_id      = aws_apigatewayv2_api.main.id
+  description = var.description
+
+  triggers = {
+    redeployment = sha1(join(",", tolist([
+      jsonencode(var.api_contract),
+      jsonencode(aws_apigatewayv2_api.main.id),
+    ])))
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
