@@ -124,6 +124,7 @@ resource "aws_security_group_rule" "link_ingress_task" {
 
 resource "aws_ecs_cluster" "cluster" {
   name = "${var.name_prefix}-cluster"
+  tags = var.tags
 }
 
 module "fargate" {
