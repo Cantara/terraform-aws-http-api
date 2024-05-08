@@ -110,5 +110,5 @@ EOT
 
 variable "description" {
   default = ""
-  type = string
+  type    = string
 }

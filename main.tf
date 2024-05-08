@@ -37,10 +37,10 @@ resource "aws_apigatewayv2_api" "main" {
 }
 
 resource "aws_apigatewayv2_stage" "main" {
-  api_id      = aws_apigatewayv2_api.main.id
-  name        = "$default"
-  tags        = var.tags
-  stage_variables = {"vpc_link_id": aws_apigatewayv2_vpc_link.main.id}
+  api_id          = aws_apigatewayv2_api.main.id
+  name            = "$default"
+  tags            = var.tags
+  stage_variables = { "vpc_link_id" : aws_apigatewayv2_vpc_link.main.id }
 
   default_route_settings {
     detailed_metrics_enabled = true
