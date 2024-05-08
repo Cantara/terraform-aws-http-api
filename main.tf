@@ -37,10 +37,10 @@ resource "aws_apigatewayv2_api" "main" {
 }
 
 resource "aws_apigatewayv2_stage" "main" {
-  api_id      = aws_apigatewayv2_api.main.id
-  name        = "$default"
-  tags        = var.tags
-  stage_variables = {"vpc_link_id": aws_apigatewayv2_vpc_link.main.id}
+  api_id          = aws_apigatewayv2_api.main.id
+  name            = "$default"
+  tags            = var.tags
+  stage_variables = { "vpc_link_id" : aws_apigatewayv2_vpc_link.main.id }
 
   default_route_settings {
     detailed_metrics_enabled = true
@@ -128,7 +128,7 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 module "fargate" {
-  source                             = "github.com/Cantara/terraform-aws-ecs-fargate?ref=864ef7c"
+  source                             = "github.com/Cantara/terraform-aws-ecs-fargate?ref=bc88da4"
   name_prefix                        = var.name_prefix
   vpc_id                             = var.vpc_id
   private_subnet_ids                 = var.private_subnet_ids
