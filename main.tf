@@ -128,7 +128,7 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 module "fargate" {
-  source                             = "github.com/Cantara/terraform-aws-ecs-fargate?ref=bc88da4"
+  source                             = "github.com/Cantara/terraform-aws-ecs-fargate?ref=347d978"
   name_prefix                        = var.name_prefix
   vpc_id                             = var.vpc_id
   private_subnet_ids                 = var.private_subnet_ids
