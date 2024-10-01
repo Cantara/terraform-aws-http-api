@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/aws/aws-sdk-go v1.55.5
-	github.com/gruntwork-io/terratest v0.47.1
+	github.com/gruntwork-io/terratest v0.47.2
 )
 
 require (
