@@ -2,7 +2,7 @@ module github.com/telia-oss/terraform-module-template
 
 go 1.21
 
-toolchain go1.23.0
+toolchain go1.25.0
 
 require (
 	github.com/aws/aws-sdk-go v1.55.8
